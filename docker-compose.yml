@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  world:
+    container_name: 'mc-bedrock-world'
+    image: itzg/minecraft-bedrock-server
+    environment:
+      EULA: 'TRUE'
+      GAMEMODE: survival
+      DIFFICULTY: normal
+    ports:
+      - 19132:19132/udp
+    volumes:
+      - bds:/data
+    stdin_open: true
+    tty: true
+  connect:
+    container_name: 'mc-bedrock-connect'
+    build: .
+    ports:
+      - '19131:19132/udp'
+
+volumes:
+  bds: {}
